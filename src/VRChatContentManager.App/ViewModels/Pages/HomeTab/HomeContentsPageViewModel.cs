@@ -1,6 +1,15 @@
-﻿namespace VRChatContentManager.App.ViewModels.Pages.HomeTab;
+﻿using CommunityToolkit.Mvvm.Input;
+using VRChatContentManager.App.Views;
 
-public sealed partial class HomeContentsPageViewModel : PageViewModelBase
+namespace VRChatContentManager.App.ViewModels.Pages.HomeTab;
+
+public sealed partial class HomeContentsPageViewModel(ContentManagerWindow contentManagerWindow)
+    : PageViewModelBase
 {
-    
+    [RelayCommand]
+    private void OpenContentManagerWindow()
+    {
+        contentManagerWindow.Show();
+        contentManagerWindow.Activate();
+    }
 }

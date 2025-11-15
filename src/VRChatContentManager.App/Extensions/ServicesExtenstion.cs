@@ -1,6 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using VRChatContentManager.App.Services;
 using VRChatContentManager.App.ViewModels;
+using VRChatContentManager.App.ViewModels.ContentManager;
+using VRChatContentManager.App.ViewModels.ContentManager.Data.Navigation;
+using VRChatContentManager.App.ViewModels.ContentManager.Data.Navigation.Avatar;
+using VRChatContentManager.App.ViewModels.ContentManager.Pages;
+using VRChatContentManager.App.ViewModels.ContentManager.Pages.Avatar;
 using VRChatContentManager.App.ViewModels.Data;
 using VRChatContentManager.App.ViewModels.Data.Connect;
 using VRChatContentManager.App.ViewModels.Data.PublishTasks;
@@ -10,6 +15,7 @@ using VRChatContentManager.App.ViewModels.Pages.GettingStarted;
 using VRChatContentManager.App.ViewModels.Pages.HomeTab;
 using VRChatContentManager.App.ViewModels.Pages.Settings;
 using VRChatContentManager.App.ViewModels.Settings;
+using VRChatContentManager.App.Views;
 using VRChatContentManager.ConnectCore.Services.Connect.Challenge;
 using AddAccountPageViewModel = VRChatContentManager.App.ViewModels.Pages.AddAccountPageViewModel;
 
@@ -39,6 +45,26 @@ public static class ServicesExtenstion
 
         services.AddTransient<HomePageViewModel>();
         services.AddTransient<SettingsPageViewModel>();
+
+        #region Content Manager ViewModels
+
+        // Content Manager ViewModels
+        services.AddKeyedSingleton<NavigationService>(ServicesKeys.ContentManagerWindows);
+
+        services.AddSingleton<ContentManagerWindowViewModel>();
+        services.AddSingleton<ContentManagerWindow>();
+
+        services.AddSingleton<ContentManagerViewModel>();
+
+        // Content Manager Pages
+        services.AddTransient<ContentManagerHomePageViewModel>();
+        services.AddTransient<ContentManagerAvatarRootPageViewModel>();
+
+        // Content Manager Navigation
+        services.AddTransient<TreeNavigationItemViewModelFactory>();
+        services.AddTransient<AvatarRootNavigationItemViewModel>();
+
+        #endregion
 
         // Data ViewModels
         services.AddTransient<UserSessionViewModelFactory>();

@@ -9,10 +9,15 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using VRChatContentManager.App.Dialogs;
 using VRChatContentManager.App.Pages;
+using VRChatContentManager.App.Pages.ContentManager;
+using VRChatContentManager.App.Pages.ContentManager.Avatar;
 using VRChatContentManager.App.Pages.GettingStarted;
 using VRChatContentManager.App.Pages.HomeTab;
 using VRChatContentManager.App.Pages.Settings;
 using VRChatContentManager.App.ViewModels;
+using VRChatContentManager.App.ViewModels.ContentManager;
+using VRChatContentManager.App.ViewModels.ContentManager.Pages;
+using VRChatContentManager.App.ViewModels.ContentManager.Pages.Avatar;
 using VRChatContentManager.App.ViewModels.Data;
 using VRChatContentManager.App.ViewModels.Data.Connect;
 using VRChatContentManager.App.ViewModels.Data.PublishTasks;
@@ -23,6 +28,7 @@ using VRChatContentManager.App.ViewModels.Pages.HomeTab;
 using VRChatContentManager.App.ViewModels.Pages.Settings;
 using VRChatContentManager.App.ViewModels.Settings;
 using VRChatContentManager.App.Views;
+using VRChatContentManager.App.Views.ContentManager;
 using VRChatContentManager.App.Views.Data.Connect;
 using VRChatContentManager.App.Views.Data.PublishTasks;
 using VRChatContentManager.App.Views.Data.Settings;
@@ -92,12 +98,17 @@ public partial class App : Application
 
         ViewLocator.Register<RpcClientSessionViewModel, RpcClientSessionView>();
         ViewLocator.Register<UserSessionViewModel, UserSessionView>();
-        
+
         // Settings Section
         ViewLocator.Register<ConnectSettingsViewModel, ConnectSettingsView>();
         ViewLocator.Register<AccountsSettingsViewModel, AccountsSettingsView>();
         ViewLocator.Register<SessionsSettingsViewModel, SessionsSettingsView>();
         ViewLocator.Register<AboutSettingsViewModel, AboutSettingsView>();
+
+        // Content Manager
+        ViewLocator.Register<ContentManagerViewModel, ContentManagerMainView>();
+        ViewLocator.Register<ContentManagerHomePageViewModel, ContentManagerHomePage>();
+        ViewLocator.Register<ContentManagerAvatarRootPageViewModel, ContentManagerAvatarRootPage>();
 
         AvaloniaXamlLoader.Load(this);
 

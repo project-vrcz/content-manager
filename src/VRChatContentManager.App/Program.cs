@@ -10,6 +10,7 @@ using Serilog.Formatting.Compact;
 using Serilog.Sinks.SystemConsole.Themes;
 using VRChatContentManager.App.Extensions;
 using VRChatContentManager.Core.Extensions;
+using VRChatContentManager.Core.Management.Extensions;
 using VRChatContentManager.Core.Services.App;
 
 namespace VRChatContentManager.App;
@@ -43,6 +44,7 @@ internal sealed class Program
         builder.Services.AddSerilog();
 
         builder.UseAppCore();
+        builder.Services.AddManagementCoreServices();
         builder.Services.AddAppServices();
         builder.Services.AddAvaloniauiDesktopApplication<App>(appBuilder => appBuilder
             .UseHotReload()

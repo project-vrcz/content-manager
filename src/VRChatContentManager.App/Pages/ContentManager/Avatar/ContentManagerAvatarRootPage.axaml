@@ -1,0 +1,24 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
+             xmlns:avatar="clr-namespace:VRChatContentManager.App.ViewModels.ContentManager.Pages.Avatar"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="avatar:ContentManagerAvatarRootPageViewModel"
+             x:Class="VRChatContentManager.App.Pages.ContentManager.Avatar.ContentManagerAvatarRootPage">
+
+    <Interaction.Behaviors>
+        <EventTriggerBehavior EventName="Loaded">
+            <InvokeCommandAction Command="{Binding LoadCommand}"/>
+        </EventTriggerBehavior>
+    </Interaction.Behaviors>
+    
+    <StackPanel>
+        <controls:Card>
+            <StackPanel>
+                <TextBox Watermark="Search avatar by name or description..." />
+            </StackPanel>
+        </controls:Card>
+    </StackPanel>
+</UserControl>

@@ -3,8 +3,9 @@
     <File Path="BuildInfo.targets" />
   </Folder>
   <Project Path="AssetsTools.NET\AssetTools.NET\AssetsTools.NET.csproj" />
-  <Project Path="VRChatContentManager.App\VRChatContentManager.App.csproj" Type="Classic C#" />
-  <Project Path="VRChatContentManager.ConnectCore\VRChatContentManager.ConnectCore.csproj" Type="Classic C#" />
-  <Project Path="VRChatContentManager.Core\VRChatContentManager.Core.csproj" Type="Classic C#" />
+  <Project Path="VRChatContentManager.App\VRChatContentManager.App.csproj" Type="C#" />
+  <Project Path="VRChatContentManager.ConnectCore\VRChatContentManager.ConnectCore.csproj" Type="C#" />
+  <Project Path="VRChatContentManager.Core.Management/VRChatContentManager.Core.Management.csproj" />
+  <Project Path="VRChatContentManager.Core\VRChatContentManager.Core.csproj" Type="C#" />
   <Project Path="VRChatContentManager.Test\VRChatContentManager.Test.csproj" />
 </Solution>
