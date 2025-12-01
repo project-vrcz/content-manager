@@ -41,7 +41,7 @@ jobs:
         env:
           RID: ${{ matrix.rid }}
           BUILD_OUTPUT_DIR: ${{ env.output_dir }}
-        run: dotnet publish -c Release VRChatContentManager.App -r $RID -o $BUILD_OUTPUT_DIR
+        run: dotnet publish -c Release App/VRChatContentManager.App -r $RID -o $BUILD_OUTPUT_DIR
         shell: bash
         working-directory: ${{ env.src_dir }}
 

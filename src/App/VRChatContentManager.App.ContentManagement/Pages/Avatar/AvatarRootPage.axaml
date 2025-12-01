@@ -1,0 +1,64 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
+             xmlns:avatar="clr-namespace:VRChatContentManager.App.ContentManagement.ViewModels.Pages.Avatar"
+             xmlns:list="clr-namespace:VRChatContentManager.App.ContentManagement.ViewModels.Data.List"
+             xmlns:controls1="clr-namespace:VRChatContentManager.App.Shared.Controls;assembly=VRChatContentManager.App.Shared"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="avatar:AvatarRootPageViewModel"
+             x:Class="VRChatContentManager.App.ContentManagement.Pages.Avatar.AvatarRootPage">
+
+    <Interaction.Behaviors>
+        <EventTriggerBehavior EventName="Loaded">
+            <InvokeCommandAction Command="{Binding LoadCommand}" />
+        </EventTriggerBehavior>
+    </Interaction.Behaviors>
+
+    <Grid RowDefinitions="Auto,*">
+        <controls:Card>
+            <StackPanel>
+                <TextBox Watermark="Search avatar by name or description..." />
+                <Button Content="Refresh All Avatars" Command="{Binding RefreshAllAvatarsCommand}" />
+            </StackPanel>
+        </controls:Card>
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Avatars}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel ItemSpacing="4" LineSpacing="4" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="list:AvatarListItemViewModel">
+                        <controls:Card Height="300" Width="200">
+                            <Grid RowDefinitions="200,*">
+                                <Image controls1:AsyncImageLoader.Source="{Binding ThumbnailUrl}" />
+                                <StackPanel Grid.Row="1">
+                                    <TextBlock Text="{Binding Id}" FontSize="12" Opacity="0.7" />
+                                    <TextBlock Text="{Binding Name}" />
+                                    <ItemsControl ItemsSource="{Binding LocalTags}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="x:String">
+                                                <Border>
+                                                    <TextBlock Text="{Binding}" />
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <Button Content="Edit Tags" Command="{Binding EditLocalTagsCommand}" />
+                                </StackPanel>
+                            </Grid>
+                        </controls:Card>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

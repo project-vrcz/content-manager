@@ -1,0 +1,36 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:avatar="clr-namespace:VRChatContentManager.App.ContentManagement.ViewModels.Dialogs.Data.Avatar"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="avatar:EditAvatarLocalTagsDialogViewModel"
+             x:Class="VRChatContentManager.App.ContentManagement.Dialogs.Data.Avatar.EditAvatarLocalTagsDialog">
+
+    <Interaction.Behaviors>
+        <EventTriggerBehavior EventName="Loaded">
+            <InvokeCommandAction Command="{Binding LoadCommand}" />
+        </EventTriggerBehavior>
+    </Interaction.Behaviors>
+
+    <StackPanel>
+        <ItemsControl ItemsSource="{Binding LocalTags}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <Border>
+                        <TextBlock Text="{Binding}" />
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <TextBox Text="{Binding TagToAdd}"/>
+        <Button Content="Add" Command="{Binding AddTagCommand}" />
+        <Button Content="Complete" Command="{Binding CompleteCommand}" />
+        <Button Content="Cancel" Command="{Binding RequestCloseCommand}" />
+    </StackPanel>
+</UserControl>

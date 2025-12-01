@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Directives>
-    <Application>
-        <Assembly Name="VRChatContentManager.App" Dynamic="Required All">
-        </Assembly>
-        <Assembly Name="VRChatContentManager.Core" Dynamic="Required All">
-        </Assembly>
-    </Application>
-</Directives>

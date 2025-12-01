@@ -1,0 +1,49 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:data="clr-namespace:VRChatContentManager.App.ViewModels.Data"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:controls="clr-namespace:VRChatContentManager.App.Shared.Controls;assembly=VRChatContentManager.App.Shared"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="data:UserSessionViewModel"
+             x:Class="VRChatContentManager.App.Views.Data.Settings.UserSessionView">
+
+    <Interaction.Behaviors>
+        <EventTriggerBehavior EventName="Loaded">
+            <InvokeCommandAction Command="{Binding LoadCommand}" />
+        </EventTriggerBehavior>
+        <EventTriggerBehavior EventName="Unloaded">
+            <InvokeCommandAction Command="{Binding UnloadCommand}" />
+        </EventTriggerBehavior>
+    </Interaction.Behaviors>
+
+    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+        <StackPanel Orientation="Horizontal">
+            <Border IsVisible="{Binding !IsSessionRequiringReauthentication}"
+                    CornerRadius="100" Height="40" Width="40" ClipToBounds="True">
+                <Image controls:AsyncImageLoader.Source="{Binding ProfilePictureUrl}"
+                       Stretch="UniformToFill" />
+            </Border>
+            <avalonia:MaterialIcon Kind="AlertCircle" Foreground="#ffc107" Height="40" Width="40"
+                                   IsVisible="{Binding IsSessionRequiringReauthentication}"
+                                   ToolTip.Tip="Session Expired, Please login again." />
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="{Binding UserId}" />
+            <TextBlock Text="{Binding UserNameOrEmail}" />
+            <TextBlock Text="{Binding DisplayName}" />
+        </StackPanel>
+        <StackPanel Grid.Column="2" Orientation="Horizontal">
+            <Button IsVisible="{Binding IsSessionRequiringReauthentication}"
+                    Command="{Binding RepairCommand}"
+                    Theme="{StaticResource MaterialFlatButton}"
+                    Content="{avalonia:MaterialIconExt Kind=AccountWrench, Size=24}" Width="32" Height="32" />
+            <Button Command="{Binding RemoveCommand}"
+                    Theme="{StaticResource MaterialFlatButton}"
+                    IsEnabled="{Binding CanRemove}"
+                    ToolTip.ShowOnDisabled="True" ToolTip.Tip="You cannot remove a session that have tasks running."
+                    Content="{avalonia:MaterialIconExt Kind=Close, Size=24}" Width="32" Height="32" />
+        </StackPanel>
+    </Grid>
+</UserControl>

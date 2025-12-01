@@ -2,9 +2,15 @@
   <Folder Name="/SolutionFolder/">
     <File Path="BuildInfo.targets" />
   </Folder>
+  <Folder Name="/App/">
+    <Project Path="App/VRChatContentManager.App.ContentManagement/VRChatContentManager.App.ContentManagement.csproj" />
+    <Project Path="App/VRChatContentManager.App.Shared/VRChatContentManager.App.Shared.csproj" />
+    <Project Path="App/VRChatContentManager.App/VRChatContentManager.App.csproj" />
+  </Folder>
+  <Folder Name="/Core/">
+    <Project Path="Core/VRChatContentManager.ConnectCore\VRChatContentManager.ConnectCore.csproj" />
+    <Project Path="Core/VRChatContentManager.Core.Management/VRChatContentManager.Core.Management.csproj" />
+    <Project Path="Core/VRChatContentManager.Core\VRChatContentManager.Core.csproj" />
+  </Folder>
   <Project Path="AssetsTools.NET\AssetTools.NET\AssetsTools.NET.csproj" />
-  <Project Path="VRChatContentManager.App\VRChatContentManager.App.csproj" Type="Classic C#" />
-  <Project Path="VRChatContentManager.ConnectCore\VRChatContentManager.ConnectCore.csproj" Type="Classic C#" />
-  <Project Path="VRChatContentManager.Core\VRChatContentManager.Core.csproj" Type="Classic C#" />
-  <Project Path="VRChatContentManager.Test\VRChatContentManager.Test.csproj" />
 </Solution>

@@ -1,0 +1,55 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="VRChatContentManager.App.App"
+             xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+             xmlns:converters="clr-namespace:VRChatContentManager.App.Converters"
+             xmlns:shared="clr-namespace:VRChatContentManager.App.Shared;assembly=VRChatContentManager.App.Shared"
+             RequestedThemeVariant="Default">
+
+    <Application.Resources>
+        <converters:ContentTypeIconConverter x:Key="ContentTypeIconConverter" />
+        <converters:ContentPublishTaskStatusForegroundConverter x:Key="ContentPublishTaskStatusForegroundConverter" />
+        <converters:ContentPublishTaskStatusBackgroundConverter x:Key="ContentPublishTaskStatusBackgroundConverter" />
+        <converters:IsContentPublishTaskInProgressConverter x:Key="IsContentPublishTaskInProgressConverter" />
+        <converters:CanContentPublishTaskRetryConverter x:Key="CanContentPublishTaskRetryConverter" />
+        <converters:CanContentPublishTaskRemoveConverter x:Key="CanContentPublishTaskRemoveConverter" />
+
+        <DrawingImage x:Key="AppIcon">
+            <DrawingImage.Drawing>
+                <DrawingGroup ClipGeometry="M0,0 V512 H512 V0 H0 Z">
+                    <GeometryDrawing Brush="#FFE3E3E3"
+                                     Geometry="F1 M512,512z M0,0z M384,341.333L334.93,390.4 348.667,401.5 373.333,377.6 373.333,469.333 394.667,469.333 394.667,377.6 421.167,401.5 433.07,390.4z M256,85.333L129.6,158.4 256,231.467 382.4,158.4z M64,340.8L64,171.2Q64,159.467 69.6,149.867 75.2,140.267 85.333,134.4L234.667,48.533Q240,45.867 245.067,44.267 250.133,42.667 256,42.667 261.866,42.667 267.2,44.267A51,51,0,0,1,277.333,48.533L426.667,134.4Q436.8,140.267 442.4,149.867 448,159.467 448,171.2L448,256 405.333,256 405.333,194.133 255.467,280.533 106.667,194.133 106.667,340.267 234.667,414.4 234.667,463.467 85.333,377.6Q75.2,371.733 69.6,362.133 64,352.533 64,340.8 M384,512Q339.733,512 308.533,480.8 277.333,449.6 277.333,405.333 277.333,361.066 308.533,329.867 339.733,298.668 384,298.667 428.267,298.667 459.467,329.867 490.667,361.067 490.667,405.333 490.667,449.6 459.467,480.8 428.267,512 384,512" />
+                    <GeometryDrawing Brush="#FFE3E3E3"
+                                     Geometry="F1 M512,512z M0,0z M119.447,311.81L134.867,246.72 148.941,254.845 140.645,283.827Q139.335,289.035 137.765,293.898 136.203,298.743 134.737,304.054L135.101,304.264Q139.04,300.38 142.455,296.606 145.899,292.825 149.664,289.034L170.543,267.316 184.107,275.148 135.447,321.048z M157.79,333.947L189.83,278.452 210.159,290.189Q216.123,293.632 220.119,298.049 224.144,302.457 224.856,307.984 225.598,313.504 221.724,320.213 217.986,326.686 212.668,329.095 207.378,331.495 201.348,330.56 195.348,329.616 189.383,326.173L182.383,322.131 171.118,341.641z M188.45,311.621L194.415,315.065Q199.179,317.815 202.845,317.217 206.541,316.611 208.777,312.738 211.055,308.792 209.407,305.853 207.777,302.923 203.012,300.173L197.048,296.729z M187.738,351.237L188.985,321.361 203.033,317.859 202.63,359.835z M233.397,378.981Q228.105,375.926 224.443,371.435 220.781,366.944 219.251,361.237 217.721,355.53 218.733,349.034 219.772,342.53 223.813,335.53 227.813,328.602 233.041,324.42 238.286,320.247 244.129,318.65 249.973,317.054 255.849,317.877 261.737,318.682 267.027,321.737 272.464,324.876 275.487,329.507 278.53,334.147 279.687,338.695L267.867,343.169Q266.889,340.034 265.262,337.519 263.646,334.986 260.663,333.264 257.1,331.206 252.932,331.539 248.773,331.854 244.813,334.683 240.853,337.512 237.713,342.948 234.533,348.458 233.876,353.291 233.219,358.124 234.923,361.848 236.646,365.583 240.519,367.818 243.865,369.751 247.362,369.782 250.878,369.824 254.031,368.855L256.213,381.243Q250.341,383.308 244.573,382.717 238.833,382.119 233.397,378.981" />
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+    </Application.Resources>
+
+    <Application.DataTemplates>
+        <shared:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <themes:MaterialTheme BaseTheme="Inherit" PrimaryColor="Indigo" SecondaryColor="Indigo" />
+        <avalonia:MaterialIconStyles />
+        <dialogHostAvalonia:DialogHostStyles />
+    </Application.Styles>
+
+    <TrayIcon.Icons>
+        <TrayIcons>
+            <TrayIcon Icon="/Assets/AppIcon.ico"
+                      ToolTipText="VRChat Content Manager"
+                      Clicked="ShowWindowClicked">
+                <TrayIcon.Menu>
+                    <NativeMenu>
+                        <NativeMenuItem Header="Show Window" Click="ShowWindowClicked" />
+                        <NativeMenuItem Header="Exit" Click="ExitAppClicked" />
+                    </NativeMenu>
+                </TrayIcon.Menu>
+            </TrayIcon>
+        </TrayIcons>
+    </TrayIcon.Icons>
+</Application>

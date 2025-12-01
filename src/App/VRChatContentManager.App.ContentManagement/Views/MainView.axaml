@@ -1,0 +1,46 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+             xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
+             xmlns:viewModels="clr-namespace:VRChatContentManager.App.ContentManagement.ViewModels"
+             xmlns:navigation="clr-namespace:VRChatContentManager.App.ContentManagement.ViewModels.Data.Navigation"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:MainViewModel"
+             x:Class="VRChatContentManager.App.ContentManagement.Views.MainView">
+
+    <Interaction.Behaviors>
+        <EventTriggerBehavior EventName="Loaded">
+            <InvokeCommandAction Command="{Binding LoadCommand}" />
+        </EventTriggerBehavior>
+    </Interaction.Behaviors>
+
+    <dialogHostAvalonia:DialogHost Identifier="{Binding DialogHostId}">
+        <controls:NavigationDrawer>
+            <controls:NavigationDrawer.LeftDrawerContent>
+                <Grid RowDefinitions="Auto,*">
+                    <Border Background="#1a237e">
+                        <StackPanel Orientation="Horizontal" Spacing="8" Margin="12">
+                            <Image Height="32" Width="32" Source="{StaticResource AppIcon}" />
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="VRChat Content Manager" FontWeight="Bold" Foreground="White" />
+                                <TextBlock Text="Content Manager" Foreground="White" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <TreeView Grid.Row="1" ItemsSource="{Binding NavigationItems}"
+                              SelectedItem="{Binding CurrentSelectedNavigationItem}">
+                        <TreeView.ItemTemplate>
+                            <TreeDataTemplate x:DataType="navigation:ITreeNavigationItemViewModel"
+                                              ItemsSource="{Binding Children}">
+                                <TextBlock Text="{Binding Name}" />
+                            </TreeDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
+                </Grid>
+            </controls:NavigationDrawer.LeftDrawerContent>
+            <TransitioningContentControl Content="{Binding CurrentPage}" />
+        </controls:NavigationDrawer>
+    </dialogHostAvalonia:DialogHost>
+</UserControl>
