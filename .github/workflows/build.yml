@@ -96,10 +96,8 @@ jobs:
 
       - name: Install NSIS
         shell: powershell
-        working-directory: ${{ runner.temp }}/install-nsis
         run: |
-          iwr -useb get.scoop.sh -outfile 'install.ps1'
-          .\install.ps1 -RunAsAdmin
+          Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
           scoop update
           scoop bucket add extras
           scoop install nsis
