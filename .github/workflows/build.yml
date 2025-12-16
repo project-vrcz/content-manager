@@ -107,6 +107,7 @@ jobs:
         env:
           INSTALLER_DISPLAY_VERSION: ${{ env.installer_product_version }}
           INSTALLER_OLD_CLASSIC_VERSION: ${{ env.installer_file_version }}
+          PATH_TO_BUNDLE: ${{ env.artifact_dir }}
         run: makensis ${{ env.installer_script }}
 
       - name: Upload Installer Artifact

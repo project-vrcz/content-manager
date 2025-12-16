@@ -15,6 +15,8 @@ Unicode True
 !define DisplayVersion "$%INSTALLER_DISPLAY_VERSION%"
 !define OldClassicVersion "$%INSTALLER_OLD_CLASSIC_VERSION%"
 
+!define PathToBundle "$%INSTALLER_PATH_TO_BUNDLE%"
+
 !define AppExecutable "VRChatContentManager.App.exe"
 
 !define /date InstallDate "%Y%m%d"
@@ -97,7 +99,7 @@ Section "Install Files"
     SetOutPath $INSTDIR
     !insertmacro UNINSTALL.LOG_OPEN_INSTALL
 
-    File artifact\*.*
+    File "${PathToBundle}\*.*"
 
     WriteRegStr "${INSTDIR_REG_ROOT}" "${INSTDIR_REG_KEY}" "DisplayName" "${ProductName}"
     WriteRegStr "${INSTDIR_REG_ROOT}" "${INSTDIR_REG_KEY}" "DisplayVersion" "${DisplayVersion}"
