@@ -95,12 +95,9 @@ jobs:
           path: ${{ env.repo_dir }}
 
       - name: Install NSIS
-        shell: powershell
-        run: |
-          Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-          scoop update
-          scoop bucket add extras
-          scoop install nsis
+        uses: repolevedavaj/install-nsis@618f596b61aeb0254a327cceba89036242b79758
+        with:
+          nsis-version: 3.11
 
       - name: Create NSIS Installer
         shell: powershell
